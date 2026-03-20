@@ -53,11 +53,12 @@
 
 # Disruptions Covering under Gigsurance
 
+**1. Natural Disasters - Heavy Rainfall, Urban Flooding, Cyclone**  
+**2. Environmental - Extreme Heat Waves, High Temparature, Pollution (Higher AQI like Delhi NCR)**  
+**3. Social - Unplanned Curfews, Local Strikes, Working Zone Closures**  
+**4. Technical - App Crash, API Downtime, Platform Associated Third party Services down**  
 
-
-
-
-
+**⚠️ No External Issues Covered - Vehicle Reapir, Health Condition**
 
 <div align="center">
 
@@ -68,10 +69,6 @@
 </div>
 
 ---
-
-## The Problem
-
-India's 15+ million gig workers face a critical vulnerability: when extreme weather, natural disasters, or environmental disruptions strike, their income stops instantly. Traditional insurance fails them completely.
 
 ### Traditional Insurance Model
 
