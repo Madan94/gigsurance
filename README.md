@@ -1,10 +1,21 @@
-# Gigsurance
+# Gigsurance - Realtime AI Driven Parametric Insurance Platform for India's Gig Economy
 
-> **AI-Powered Parametric Insurance for India's Gig Economy**
-
-Protecting gig workers from income loss caused by external disruptions through autonomous, instant payouts. No claims. No waiting. Just protection.
+<p align="center">
+  <img src="https://github.com/Madan94/gigsurance/blob/main/assets/GigSurance.png" alt="Gigsurance Banner" width="100%" />
+</p>
 
 ---
+
+**Breaking down Gigsurance in Four Steps**
+
+**1. Who is our user really?**
+**2. How does our AI actually work**
+**3. How does it get built?**
+**4. Gigsurance - Our Final Delivery**
+
+
+
+# Who is your user really?
 
 <div align="center">
 
