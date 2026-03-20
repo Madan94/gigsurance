@@ -1,5 +1,7 @@
 # Gigsurance - Realtime AI Driven Parametric Insurance Platform for India's Gig Economy
 
+**Presented by Team BlueTeeth**
+
 <p align="center">
   <img src="https://github.com/Madan94/gigsurance/blob/main/assets/GigSurance.png" alt="Gigsurance Banner" width="100%" />
 </p>
@@ -23,9 +25,17 @@
 
 **One line Statement - No financial safety net for loss of working time for India's Gig Workers**
 
+**One Stop Destination - GigSurance - AI Powered Dynamic & Parametric based Insurance Platform**
+
+**Type of Platform - Web App**
+
 **So, What type of Gig Workers are you targeting?**
 
 # 🧑 Revealing our Target User Persona
+
+<p align="center">
+  <img src="https://github.com/Madan94/gigsurance/blob/main/assets/GigSurance%20(2).png" alt="Gigsurance Banner" width="100%" />
+</p>
 
 **1. Our Focused Persona - Metro Cities based Gig Delivery Workers**  
 **2. Total no of active Gig Workers in Metro Cities - 25 Lakhs**  
@@ -53,49 +63,75 @@
 
 # Disruptions Covering under Gigsurance
 
-**1. Natural Disasters - Heavy Rainfall, Urban Flooding, Cyclone**  
-**2. Environmental - Extreme Heat Waves, High Temparature, Pollution (Higher AQI like Delhi NCR)**  
-**3. Social - Unplanned Curfews, Local Strikes, Working Zone Closures**  
-**4. Technical - App Crash, API Downtime, Platform Associated Third party Services down**  
+## Coverage Types
 
-**⚠️ No External Issues Covered - Vehicle Reapir, Health Condition**
+### ✅ Covered Events
+- Extreme weather (heavy rain, cyclones, storms)
+- Flooding (delivery zone shutdowns)
+- Severe pollution (AQI thresholds)
+- Curfews and lockdowns
+- Local area strikes
+- Market crashes
+- Platform/server outages
 
-<div align="center">
-
-**Phase 1 MVP: 60-Second Onboarding + Autonomous Payout System**
-
-*Building the future of gig worker protection, one agent at a time*
-
-</div>
+### ⚠️ Not Covered
+- Health or life issues
+- Accidents
+- Vehicle repairs
+- Holidays
+- Driver out of service (without disruption)
+- Location outside registered zone
 
 ---
 
-### Traditional Insurance Model
+# Move 1 - How We Onboard our Gig Workers 
+
+**Phase 1 - The Onboarding of GigSurance Partners - Gig Workers** 
+
+# 💡 GigSurance Mantra - 60 Sec Onboarding
+
+### ❌ Not Following Traditional Insurance Model
 
 ```
 Incident Occurs → User Files Claim → Documents Verified → Survey Done → Payment After Weeks
 ```
+# 🛠️ How Gigsurance will work?
 
-**Pain Points:**
-- Weeks-long claim processing
-- Complex document verification
-- Manual survey requirements
-- No coverage for external disruptions
-- Designed for salaried workers, not gig economy
+**Deliverable** - We designed onboarding as a **high-speed, intelligence-driven flow** that converts a gig worker into an insured user in under **60 seconds**.
 
-### The Gig Worker Reality
+## Our Ultra Fast Onboarding Engine - Dedicated Web App
 
-When heavy rainfall floods Chennai, delivery zones shut down. When cyclones hit, workers can't operate. When pollution levels spike, health risks prevent work. **Zero income. Zero protection.**
+### Onboarding Flow Diagram
 
----
+```mermaid
+graph TD
+    Start([Worker Opens App]) --> Phone[Phone Number Entry]
+    Phone --> OTP[OTP Verification]
+    OTP --> Persona[Select Work Type<br/>Food/Quick/E-commerce]
+    Persona --> Location[Location Capture<br/>GPS + Zone Selection]
+    Location --> Pattern[Work Pattern Input<br/>Hours/Day, Days/Week]
+    Pattern --> Risk[AI Risk Calculation<br/>Location + Persona + History]
+    Risk --> Plans[Plan Recommendation<br/>Basic/Standard/Premium]
+    Plans --> Activate[One-Tap Activation]
+    Activate --> Dashboard[Main Dashboard]
+    Dashboard --> Protected([Protected!])
+    
+    style Start fill:#e3f2fd
+    style Protected fill:#c8e6c9
+    style Activate fill:#fff9c4
+```
+----------------------------------------------------------------
 
-## Our Solution
 
-**Gigsurance** transforms insurance through **parametric automation** - when a qualifying event occurs, payouts trigger automatically. No claims. No paperwork. Just instant protection.
+# 2️⃣ How does our AI actually work? - The Backbone under the ICE
 
-**The Innovation:** Four autonomous AI agents work 24/7 to detect disruptions, validate events, calculate fair payouts, and execute instant transfers - all without human intervention.
+**Phase 2 - The Arrival of GigSurance Agents - Gigents**
 
-### How It Works
+**1. Gigsurance** transforms insurance through **parametric automation** - when a qualifying event occurs, payouts trigger automatically. No claims. No paperwork. Just instant protection.
+
+**2. The Innovation:** Four autonomous AI agents work 24/7 to detect disruptions, validate events, calculate fair payouts, and execute instant transfers - all without human intervention.
+
+# Let's See How our Agent Works
 
 ```mermaid
 graph LR
@@ -110,11 +146,7 @@ graph LR
     style F fill:#51cf66
 ```
 
-**Example:** Rainfall > 120mm in Chennai → Automatic ₹500 payout to all affected workers within minutes.
-
 ---
-
-## Key Innovations
 
 ### Autonomous Agent System
 
@@ -124,99 +156,6 @@ graph LR
 - **Agent 2: Zone Classifier** - Maps disruptions to specific delivery zones using NLP
 - **Agent 3: Fund Allocator** - Calculates individual payouts based on income baseline
 - **Agent 4: Payout Executor** - Instantly transfers funds via UPI
-
-### Real-Time Fraud Detection
-
-**Multi-layered security system:**
-
-- GPS spoofing detection through movement pattern analysis
-- Behavioral verification (active hours, delivery routes, speed consistency)
-- Multi-device triangulation prevention
-- Trust score system (0-100) updated in real-time
-
-### Dynamic Pricing Model
-
-**Premium adjusts based on:**
-
-- **Location Risk Score** - Historical disruption frequency in zone
-- **Persona Type** - Food delivery vs Quick commerce vs E-commerce
-- **Work Pattern** - Hours per day, days per week
-- **Real-Time Conditions** - Current weather trends, seasonal patterns
-
-### Predictive Intelligence
-
-AI analyzes historical data to suggest optimal premium plans before disruptions occur, helping workers make informed decisions.
-
----
-
-## Phase 1 Deliverables
-
-> **Primary Focus: Core Platform + 60-Second Onboarding + Autonomous Payout System**
-
-**What We're Building in Phase 1:**
-
-The foundation of Gigsurance - a fully functional parametric insurance platform that demonstrates the core value proposition: instant, automated protection for gig workers.
-
-### Mobile Application (Flutter)
-
-**Gig Worker Onboarding in 60 Seconds**
-
-The fastest insurance activation in the market:
-
-- Phone verification with OTP
-- Persona selection (Food Delivery / Quick Commerce / E-commerce)
-- Location capture (GPS + manual zone selection)
-- Work pattern input (hours/day, days/week)
-- AI-powered plan recommendation (Basic / Standard / Premium)
-- One-tap insurance activation
-
-**Main Dashboard Features:**
-- Live insurance status and coverage details
-- Real-time location tracking
-- Trust score display
-- Payment history
-- Weekly renewal management
-- AI chatbot for support
-
-### Admin Dashboard (Next.js)
-
-**Event Monitoring & Management**
-
-Complete control center for disruption management:
-
-- Real-time disruption event feed
-- Zone visualization with affected workers
-- Manual event triggering capabilities
-- Payout approval queue
-- Worker management and verification
-- Analytics and reporting
-
-### Backend System (FastAPI)
-
-**Core Infrastructure:**
-- RESTful API for mobile and admin dashboards
-- Agent orchestration system
-- Risk calculation engine
-- Dynamic pricing algorithm
-- Fraud detection pipeline
-- Payment integration (Razorpay)
-
----
-
-## Technology Stack
-
-| Layer | Technology |
-|-------|-----------|
-| **Mobile** | Flutter (Dart) |
-| **Admin Dashboard** | Next.js 14 (TypeScript) |
-| **Backend** | FastAPI (Python) |
-| **AI/ML** | LangChain + OpenAI |
-| **Database** | PostgreSQL + Pinecone (Vector DB) |
-| **APIs** | Weather, News, Disaster, AQI, Traffic |
-| **Payments** | Razorpay (UPI) |
-| **Notifications** | SMS/WhatsApp API |
-
----
 
 ## Agent System Architecture
 
@@ -262,9 +201,104 @@ graph TB
     style A4 fill:#4dabf7
 ```
 
+### Real-Time Fraud Detection
+
+**Multi-layered security system:**
+
+- GPS spoofing detection through movement pattern analysis
+- Behavioral verification (active hours, delivery routes, speed consistency)
+- Multi-device triangulation prevention
+- Trust score system (0-100) updated in real-time
+
+### Dynamic Pricing Model
+
+**Premium adjusts based on:**
+
+- **Location Risk Score** - Historical disruption frequency in zone
+- **Persona Type** - Food delivery vs Quick commerce vs E-commerce
+- **Work Pattern** - Hours per day, days per week
+- **Real-Time Conditions** - Current weather trends, seasonal patterns
+
+### Predictive Intelligence
+
+AI analyzes historical data to suggest optimal premium plans before disruptions occur, helping workers make informed decisions.
+
 ---
 
-## Use Cases
+# 3️⃣ How Does it GigSurance get build? - The Architecture
+
+**Phase 3 - The Brick by Brick Solid Architecture of GigSurance**
+
+## GigSurance Deliverables
+
+> **Primary Focus: Core Platform + 60-Second Onboarding + Autonomous Payout System**
+
+**What We're Building in Phase 1:**
+
+The foundation of Gigsurance - a fully functional parametric insurance platform that demonstrates the core value proposition: instant, automated protection for gig workers.
+
+### Web Application for Gig Workers
+
+**Gig Worker Onboarding in 60 Seconds**
+
+**The fastest insurance activation in the market:**
+
+- Phone verification with OTP
+- Persona selection (Food Delivery / Quick Commerce / E-commerce)
+- Location capture (GPS + manual zone selection)
+- Work pattern input (hours/day, days/week)
+- AI-powered plan recommendation (Basic / Standard / Premium)
+- One-tap insurance activation
+
+**Main Dashboard Features:**
+- Live insurance status and coverage details
+- Real-time location tracking
+- Trust score display
+- Payment history
+- Weekly renewal management
+- AI chatbot for support
+
+### Admin Dashboard (Next.js) - Dedicated Web Application
+
+**Event Monitoring & Management**
+
+Complete control center for disruption management:
+
+- Real-time disruption event feed
+- Zone visualization with affected workers
+- Manual event triggering capabilities
+- Payout approval queue
+- Worker management and verification
+- Analytics and reporting
+
+### Backend System (FastAPI)
+
+**Core Infrastructure:**
+- RESTful API for mobile and admin dashboards
+- Agent orchestration system
+- Risk calculation engine
+- Dynamic pricing algorithm
+- Fraud detection pipeline
+- Payment integration (Razorpay)
+
+---
+
+## Technology Stack
+
+| Layer | Technology |
+|-------|-----------|
+| **Mobile** | Web App (Angular JS) |
+| **Admin Dashboard** | Next.js 14 (TypeScript) |
+| **Backend** | FastAPI (Python) |
+| **AI/ML** | LangChain + OpenAI |
+| **Database** | PostgreSQL + Pinecone (Vector DB) |
+| **APIs** | Weather, News, Disaster, AQI, Traffic |
+| **Payments** | Razorpay (UPI) |
+| **Notifications** | SMS/WhatsApp API |
+
+---
+
+## GigSurance - Real Time Scenario
 
 ### Scenario 1: Heavy Rainfall
 **Event:** Rainfall exceeds 120mm in Chennai  
@@ -299,166 +333,29 @@ graph TB
 
 ---
 
-## Phase 1 Roadmap
-
-**8-Week Sprint to MVP Launch**
-
-### Weeks 1-2: Foundation
-**Goal:** Core backend infrastructure and first agent
-
-- Backend core infrastructure (FastAPI)
-- PostgreSQL schema design
-- Agent 1 implementation (Disaster Monitor)
-- External API integrations (Weather, News, Disaster, AQI)
-
-**Deliverable:** Working disaster detection system
-
-### Weeks 3-4: User Interfaces
-**Goal:** Complete user-facing applications
-
-- Flutter mobile app (onboarding flow)
-- Next.js admin dashboard (event monitoring)
-- Authentication and authorization
-- Location tracking service
-
-**Deliverable:** Functional mobile app and admin dashboard
-
-### Weeks 5-6: Intelligence Layer
-**Goal:** Full agent workflow and fraud prevention
-
-- Agent 2-4 implementation
-- Fraud detection algorithms
-- Risk calculation engine
-- Dynamic pricing model
-
-**Deliverable:** Complete autonomous payout system
-
-### Weeks 7-8: Integration & Testing
-**Goal:** Production-ready platform
-
-- Payment gateway integration (Razorpay)
-- Notification system (SMS/WhatsApp)
-- End-to-end testing
-- Performance optimization
-
-**Deliverable:** Launch-ready MVP
-
----
-
-## Future Phases
-
-### Phase 2: Scale & Intelligence
-- Multi-city expansion (Bangalore, Mumbai, Delhi)
-- Advanced analytics dashboard
-- Machine learning model refinement
-- Platform partnerships (Swiggy, Zomato API integration)
-
-### Phase 3: Ecosystem Integration
-- Direct integration with gig platforms
-- Real-time trip verification
-- Revenue-based coverage models
-- Community features
-
-### Phase 4: Market Expansion
-- Additional disruption types
-- B2B partnerships
-- Insurance product diversification
-- International expansion
-
----
-
-*Note: Future phases will be detailed after Phase 1 completion and user feedback integration.*
-
----
-
-## Coverage Types
-
-### Covered Events
-- Extreme weather (heavy rain, cyclones, storms)
-- Flooding (delivery zone shutdowns)
-- Severe pollution (AQI thresholds)
-- Curfews and lockdowns
-- Local area strikes
-- Market crashes
-- Platform/server outages
-
-### Not Covered
-- Health or life issues
-- Accidents
-- Vehicle repairs
-- Holidays
-- Driver out of service (without disruption)
-- Location outside registered zone
-
----
-
 ## Innovation Highlights
 
-### Parametric Automation
+### 1. Parametric Automation
 Unlike traditional insurance, payouts are triggered by **objective data** (rainfall mm, wind speed km/h) rather than subjective claims. This eliminates fraud, speeds up processing, and ensures fairness.
 
-### Zone-Level Precision
+### 2. Zone-Level Precision
 We don't just detect city-wide events - our AI maps disruptions to **specific delivery zones**, ensuring only affected workers receive payouts.
 
-### Rolling Weekly Cycles
+### 3. Rolling Weekly Cycles
 Each worker has an individualized 7-day cycle starting from their signup time, not a fixed Monday-Sunday schedule. This accommodates part-time workers and flexible schedules.
 
-### Cooldown Period
+### 4. Cooldown Period
 New users have a 6-hour cooldown before coverage activates, preventing exploitation during active disruptions.
 
-### Location Intelligence
+### 5. Location Intelligence
 System automatically detects if a worker has been in a different city for 24+ hours and prompts location update, ensuring accurate coverage and pricing.
-
----
-
-## Visual Architecture
-
-### System Overview
-
-![System Architecture](docs/images/system-architecture.png)
-*Complete system architecture showing data flow from external APIs through agent workflow to payout execution*
-
-### User Journey
-
-![Mobile App Flow](docs/images/mobile-onboarding-flow.png)
-*60-second onboarding journey from phone verification to insurance activation*
-
-### Admin Interface
-
-![Admin Dashboard](docs/images/admin-dashboard.png)
-*Real-time event monitoring, worker management, and payout analytics*
-
-### Agent Workflow Visualization
-
-![Agent Workflow](docs/images/agent-workflow.png)
-*Four-agent autonomous system processing disruptions from detection to payout*
-
-### Onboarding Flow Diagram
-
-```mermaid
-graph TD
-    Start([Worker Opens App]) --> Phone[Phone Number Entry]
-    Phone --> OTP[OTP Verification]
-    OTP --> Persona[Select Work Type<br/>Food/Quick/E-commerce]
-    Persona --> Location[Location Capture<br/>GPS + Zone Selection]
-    Location --> Pattern[Work Pattern Input<br/>Hours/Day, Days/Week]
-    Pattern --> Risk[AI Risk Calculation<br/>Location + Persona + History]
-    Risk --> Plans[Plan Recommendation<br/>Basic/Standard/Premium]
-    Plans --> Activate[One-Tap Activation]
-    Activate --> Dashboard[Main Dashboard]
-    Dashboard --> Protected([Protected!])
-    
-    style Start fill:#e3f2fd
-    style Protected fill:#c8e6c9
-    style Activate fill:#fff9c4
-```
 
 ---
 
 ## Getting Started
 
 ### For Gig Workers
-1. Download the Gigsurance mobile app
+1. DNavigate to GigSurance Web App
 2. Complete 60-second onboarding
 3. Select your work type and location
 4. Choose your insurance plan
@@ -473,31 +370,23 @@ graph TD
 
 ---
 
-## Impact Vision
-
-**Protecting India's Gig Economy**
-
-- 15+ million potential beneficiaries
-- Instant financial security during disruptions
-- Fair, transparent pricing
-- Zero paperwork, zero hassle
-- Building resilience for the future of work
-
----
-
 ## Contact & Support
 
-For inquiries, partnerships, or support:
-- **Email:** support@gigsurance.in
-- **Website:** [Coming Soon]
-- **Documentation:** [Technical Docs]
+For inquiries or support:
+- **Email:** madhanat94@gmail.com
+- **Website:** [https://gigsurance.com]
+- **Documentation:** [https://docs.google.com/document/d/1wZYr2hCGmYcWqeDmG8LoTaJHI3KMuQWk9TBf-XkuSuc/edit?usp=sharing]
 
 ---
 
 ## License
 
-[License Type] - [Year] Gigsurance
+[MIT] - [2026] Gigsurance
 
 ---
 
-**Built for India's Gig Workers**
+**Submitted at GuideWire DevTrails Univeristy Hackathons by Team BlueTeeth**
+
+**❤️ Built for India's Gig Workers - GigSurance**
+
+**❤️ Taking a Moment to Show gratitude to Guidewire for organising these type of hackathons**
