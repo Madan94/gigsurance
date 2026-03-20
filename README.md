@@ -23,6 +23,10 @@
 
 # ⚠️ The Actual Problem
 
+## Introducing Team BlueTeeth - The Minds behind GigSurance
+
+[![Watch our Team](./assets/demo-preview.gif](https://vimeo.com/1175437196?share=copy&fl=sv&fe=ci)
+
 **One line Statement - No financial safety net for loss of working time for India's Gig Workers**
 
 **One Stop Destination - GigSurance - AI Powered Dynamic & Parametric based Insurance Platform**
