@@ -3,10 +3,12 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const MONGODB_URI: string | undefined = process.env.MONGO_URI;
+const MONGODB_URI: string | undefined =
+  process.env.MONGO_URI || process.env.MONGODB_URI || process.env.MONGODB_URL;
 
 if (!MONGODB_URI) {
-  console.error('Missing MongoDB URI in environment variables');
+  console.error("Missing MongoDB URI in environment variables.");
+  console.error("Set one of: MONGO_URI, MONGODB_URI, MONGODB_URL");
   process.exit(1);
 }
 

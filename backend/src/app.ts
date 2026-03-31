@@ -6,6 +6,7 @@ import cors from "cors";
 //backend configs
 import { connectToDatabase } from "./config/database.js";
 import driverAuthRoutes from "./routes/driverAuth.routes.js";
+import initializationRoutes from "./routes/intialization.routes.js";
 
 
 dotenv.config();
@@ -43,6 +44,7 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 app.use("/api", driverAuthRoutes);
+app.use("/api/init", initializationRoutes);
 
 
 

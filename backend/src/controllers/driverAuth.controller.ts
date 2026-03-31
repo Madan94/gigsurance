@@ -21,28 +21,48 @@ function signToken(driverId: string) {
   return jwt.sign({ id: driverId }, process.env.JWT_SECRET!, { expiresIn: "7d" });
 }
 
+function asTrimmedString(value: unknown) {
+  if (value === null || value === undefined) return "";
+  return String(value).trim();
+}
+
+function safeJsonParse<T>(value: unknown): T | null {
+  if (typeof value !== "string") return null;
+  try {
+    return JSON.parse(value) as T;
+  } catch {
+    return null;
+  }
+}
+
 class DriverAuthController {
   async register(req: Request, res: Response) {
     try {
-      const {
-        username,
-        phoneNumber,
-        email,
-        dob,
-        gender,
-        platform,
-        region,
-        workPattern,
-        insuranceId,
-      } = req.body as Partial<RegisterBody>;
+      const rawBody = req.body as Record<string, unknown>;
+      const username = asTrimmedString(rawBody.username);
+      const phoneNumber = asTrimmedString(rawBody.phoneNumber);
+      const email = asTrimmedString(rawBody.email);
+      const dobRaw = rawBody.dob;
+      const gender = asTrimmedString(rawBody.gender);
+      const platform = asTrimmedString(rawBody.platform) as RegisterBody["platform"];
+      const insuranceId = asTrimmedString(rawBody.insuranceId);
+
+      const region =
+        (typeof rawBody.region === "object" && rawBody.region ? (rawBody.region as any) : null) ??
+        safeJsonParse<RegisterBody["region"]>(rawBody.region);
+
+      const workPattern =
+        (typeof rawBody.workPattern === "object" && rawBody.workPattern ? (rawBody.workPattern as any) : null) ??
+        safeJsonParse<RegisterBody["workPattern"]>(rawBody.workPattern);
 
       const profilePicture = (req as any).file?.path ?? "";
+      const dobStr = asTrimmedString(dobRaw);
 
       if (
         !username ||
         !phoneNumber ||
         !email ||
-        !dob ||
+        !dobStr ||
         !gender ||
         !platform ||
         !region?.city ||
@@ -53,6 +73,9 @@ class DriverAuthController {
         return sendError(res, "All fields are required", 400);
       }
 
+      const dobDate = new Date(dobStr);
+      if (Number.isNaN(dobDate.getTime())) return sendError(res, "Invalid dob", 400);
+
       const existingDriver = await driverModel.findOne({ "personalData.phoneNumber": phoneNumber });
       if (existingDriver) return sendError(res, "Driver with this phone number already exists", 400);
 
@@ -61,7 +84,7 @@ class DriverAuthController {
           username,
           phoneNumber,
           email,
-          dob: new Date(dob),
+          dob: dobDate,
           gender,
           profilePicture,
         },
@@ -71,7 +94,7 @@ class DriverAuthController {
           workPattern,
         },
         insurancePlan: {
-          plan: insuranceId ?? "",
+          plan: insuranceId || "",
           initialPaymentPaid: false,
           numberOfWeeksPaid: 0,
           weeklyPayment: { amount: "0", dueDate: new Date() },
@@ -92,9 +115,9 @@ class DriverAuthController {
     }
   }
 
-  async verifyPhone(req: Request, res: Response) {
+  async login(req: Request, res: Response) {
     try {
-      const { phoneNumber } = req.body as { phoneNumber?: string };
+      const phoneNumber = asTrimmedString((req.body as any)?.phoneNumber);
       if (!phoneNumber) return sendError(res, "Phone number is required", 400);
 
       const existingDriver = await driverModel.findOne({ "personalData.phoneNumber": phoneNumber });
@@ -107,25 +130,28 @@ class DriverAuthController {
         expiresAt: new Date(Date.now() + 5 * 60 * 1000),
       });
     } catch (error) {
-      console.error("Error in verifyPhone:", error);
+      console.error("Error in login:", error);
       return sendError(res, "Internal server error", 500);
     }
   }
 
-  async login(req: Request, res: Response) {
+  async verifyPhone(req: Request, res: Response) {
     try {
-      const { phoneNumber, otp } = req.body as { phoneNumber?: string; otp?: string };
+      const phoneNumber = asTrimmedString((req.body as any)?.phoneNumber);
+      const otp = asTrimmedString((req.body as any)?.otp);
       if (!phoneNumber || !otp) return sendError(res, "Phone number and OTP are required", 400);
 
+      if (otp.replace(/\D/g, "") !== "123456") return sendError(res, "Invalid OTP", 400);
+
       const driver = await driverModel.findOne({ "personalData.phoneNumber": phoneNumber });
-      if (!driver) return sendError(res, "Driver with this phone number does not exist", 400);
+      if (driver) {
+        const token = signToken(String(driver._id));
+        return sendSuccess(res, "Phone verified successfully", { token });
+      }
 
-      if (otp !== "123456") return sendError(res, "Invalid OTP", 400);
-
-      const token = signToken(String(driver._id));
-      return sendSuccess(res, "Login successful", { token });
+      return sendSuccess(res, "Phone verified successfully", { token: "" });
     } catch (error) {
-      console.error("Error in login:", error);
+      console.error("Error in verifyPhone:", error);
       return sendError(res, "Internal server error", 500);
     }
   }

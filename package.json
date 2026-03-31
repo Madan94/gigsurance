@@ -1,11 +1,19 @@
 {
-    "name": "gigsurance",
-    "private": true,
-    "scripts": {
-        "preinstall": "npm install --prefix frontend",
-        "dev": "npm run dev --prefix frontend",
-        "build": "npm run build --prefix frontend",
-        "start": "npm run start --prefix frontend",
-        "lint": "npm run lint --prefix frontend"
-    }
+  "name": "gigsurance",
+  "private": true,
+  "scripts": {
+    "install:frontend": "npm install --prefix frontend",
+    "install:backend": "npm install --prefix backend",
+    "install:all": "npm run install:frontend && npm run install:backend",
+    "dev:frontend": "npm run dev --prefix frontend",
+    "dev:backend": "npm run dev --prefix backend",
+    "dev": "npm run dev:backend & npm run dev:frontend",
+    "build:frontend": "npm run build --prefix frontend",
+    "build:backend": "npm run build --prefix backend",
+    "build": "npm run build:frontend && npm run build:backend",
+    "start:frontend": "npm run preview --prefix frontend",
+    "start:backend": "npm run start --prefix backend",
+    "start": "npm run start:backend",
+    "lint": "npm run lint --prefix frontend"
+  }
 }

@@ -3,6 +3,7 @@ import multer from "multer";
 import driverAuthController from "../controllers/driverAuth.controller.js";
 import driverAuthMiddleware from "../middleware/driverAuth.js";
 
+
 const router = Router();
 const upload = multer({ dest: "uploads/" });
 

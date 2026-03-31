@@ -2,10 +2,13 @@ import { useMemo, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ArrowLeft, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { apiPost } from "@/lib/api";
+import { toast } from "@/hooks/use-toast";
 
 type LocationState = {
   phoneNumber?: string;
   postOtpRedirect?: { to: string; state?: unknown };
+  flow?: "login" | "register";
 };
 
 function normalizePhoneDigits(value: string) {
@@ -25,12 +28,33 @@ export default function OnboardingOtp() {
 
   const [phoneNumber, setPhoneNumber] = useState(initialPhone);
   const [otp, setOtp] = useState("");
+  const [submitting, setSubmitting] = useState(false);
 
   const canVerify = phoneNumber.length === 10 && otp.length === 6;
 
-  const onVerify = () => {
-    const redirect = state.postOtpRedirect ?? { to: "/onboarding", state: { initialStep: 1 } };
-    navigate(redirect.to, { replace: true, state: redirect.state });
+  const onVerify = async () => {
+    if (!canVerify || submitting) return;
+    setSubmitting(true);
+    try {
+      const res = await apiPost<{ token: string }, { phoneNumber: string; otp: string }>("/verifyphone", {
+        phoneNumber,
+        otp,
+      });
+
+      const token = res.data?.token ?? "";
+      if (token) localStorage.setItem("gs_token", token);
+
+      const redirect = state.postOtpRedirect ?? { to: "/dashboard", state: undefined };
+      navigate(redirect.to, { replace: true, state: redirect.state });
+    } catch (e: any) {
+      toast({
+        variant: "destructive",
+        title: "Verification failed",
+        description: e?.response?.data?.message ?? "Please try again",
+      });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -77,7 +101,7 @@ export default function OnboardingOtp() {
               className="h-12 w-full rounded-xl bg-secondary px-4 text-sm outline-none focus:ring-2 ring-foreground/20 tracking-widest text-center text-lg"
             />
 
-            <Button variant="hero" size="lg" className="w-full" disabled={!canVerify} onClick={onVerify}>
+            <Button variant="hero" size="lg" className="w-full" disabled={!canVerify || submitting} onClick={onVerify}>
               Verify & Continue
             </Button>
           </div>
