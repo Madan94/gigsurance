@@ -6,7 +6,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const cors_1 = __importDefault(require("cors"));
+//backend configs
+const database_js_1 = require("./config/database.js");
 dotenv_1.default.config();
+(0, database_js_1.connectToDatabase)();
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)({
     origin: true,

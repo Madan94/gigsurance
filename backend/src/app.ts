@@ -3,7 +3,12 @@ import dotenv from "dotenv";
 import session from "express-session";
 import cors from "cors";
 
+//backend configs
+import { connectToDatabase } from "./config/database.js";
+
+
 dotenv.config();
+connectToDatabase();
 
 const app = express();
 

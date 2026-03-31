@@ -1,24 +1,8 @@
 "use strict";
-// import { createServer } from 'http';
-// import app from './app.js';
-// import SocketService from './services/socket.service.js';
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-// const PORT = process.env.PORT || 3000;
-// // Create HTTP server
-// const httpServer = createServer(app);
-// // Initialize Socket.IO service
-// const socketService = new SocketService(httpServer);
-// // Make socket service globally available for use in controllers
-// (global as any).socketService = socketService;
-// // Start server
-// httpServer.listen(PORT, () => {
-//   console.log(`🚀 Server is running on port ${PORT}`);
-//   console.log(`🔌 WebSocket service initialized`);
-//   console.log(`📡 Ready for real-time connections`);
-// });
 const http_1 = __importDefault(require("http"));
 const app_js_1 = __importDefault(require("./app.js"));
 const port = Number(process.env.PORT);
