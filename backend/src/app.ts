@@ -5,6 +5,7 @@ import cors from "cors";
 
 //backend configs
 import { connectToDatabase } from "./config/database.js";
+import driverAuthRoutes from "./routes/driverAuth.routes.js";
 
 
 dotenv.config();
@@ -40,6 +41,8 @@ app.use((req: Request, res: Response, next) => {
 app.get("/", (req: Request, res: Response) => {
   res.send("GigSurance - Ensure your insurance");
 });
+
+app.use("/api", driverAuthRoutes);
 
 
 

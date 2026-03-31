@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ArrowLeft, ArrowRight, Phone, MapPin, Clock, Sparkles, PartyPopper, Bike, Package, ShoppingBag } from "lucide-react";
 
 const STEPS = ["Phone", "Work Type", "Location", "Schedule", "Plan", "Success"];
+
+function normalizePhoneDigits(value: string) {
+  return value.replace(/\D/g, "").slice(0, 10);
+}
 
 function StepIndicator({ current, total }: { current: number; total: number }) {
   return (
@@ -22,8 +26,15 @@ function StepIndicator({ current, total }: { current: number; total: number }) {
 
 function PhoneStep({ onNext }: { onNext: () => void }) {
   const [phone, setPhone] = useState("");
-  const [otpSent, setOtpSent] = useState(false);
-  const [otp, setOtp] = useState("");
+  const [mode, setMode] = useState<"login" | "register">("login");
+  const [register, setRegister] = useState({
+    username: "",
+    email: "",
+    dob: "",
+    gender: "",
+    profilePicture: null as File | null,
+  });
+  const navigate = useNavigate();
 
   return (
     <div className="space-y-6">
@@ -39,40 +50,106 @@ function PhoneStep({ onNext }: { onNext: () => void }) {
           <input
             type="tel"
             value={phone}
-            onChange={(e) => setPhone(e.target.value.replace(/\D/g, "").slice(0, 10))}
+            onChange={(e) => setPhone(normalizePhoneDigits(e.target.value))}
             placeholder="98765 43210"
             className="h-12 flex-1 rounded-xl bg-secondary px-4 text-sm outline-none focus:ring-2 ring-foreground/20"
           />
         </div>
 
-        {!otpSent ? (
-          <Button
-            variant="hero"
-            size="lg"
-            className="w-full"
-            disabled={phone.length < 10}
-            onClick={() => setOtpSent(true)}
-          >
-            Send OTP
-          </Button>
-        ) : (
+        {mode === "login" && (
           <>
-            <input
-              type="text"
-              value={otp}
-              onChange={(e) => setOtp(e.target.value.replace(/\D/g, "").slice(0, 6))}
-              placeholder="Enter 6-digit OTP"
-              className="h-12 w-full rounded-xl bg-secondary px-4 text-sm outline-none focus:ring-2 ring-foreground/20 tracking-widest text-center text-lg"
-            />
             <Button
               variant="hero"
               size="lg"
               className="w-full"
-              disabled={otp.length < 6}
-              onClick={onNext}
+              disabled={phone.length < 10}
+              onClick={() =>
+                navigate("/onboarding/otp", {
+                  state: { phoneNumber: phone, postOtpRedirect: { to: "/onboarding", state: { initialStep: 1 } } },
+                })
+              }
             >
-              Verify & Continue
+              Send OTP
             </Button>
+
+            <div className="pt-2">
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <span>New user?</span>
+                <button
+                  type="button"
+                  onClick={() => setMode("register")}
+                  className="font-medium text-foreground underline underline-offset-4 hover:opacity-80 transition-opacity"
+                >
+                  Register
+                </button>
+              </div>
+            </div>
+          </>
+        )}
+
+        {mode === "register" && (
+          <>
+            <div className="space-y-3">
+              <input
+                type="text"
+                value={register.username}
+                onChange={(e) => setRegister((p) => ({ ...p, username: e.target.value }))}
+                placeholder="Username"
+                className="h-12 w-full rounded-xl bg-secondary px-4 text-sm outline-none focus:ring-2 ring-foreground/20"
+              />
+              <input
+                type="email"
+                value={register.email}
+                onChange={(e) => setRegister((p) => ({ ...p, email: e.target.value }))}
+                placeholder="Email"
+                className="h-12 w-full rounded-xl bg-secondary px-4 text-sm outline-none focus:ring-2 ring-foreground/20"
+              />
+              <input
+                type="date"
+                value={register.dob}
+                onChange={(e) => setRegister((p) => ({ ...p, dob: e.target.value }))}
+                className="h-12 w-full rounded-xl bg-secondary px-4 text-sm outline-none focus:ring-2 ring-foreground/20"
+              />
+              <select
+                value={register.gender}
+                onChange={(e) => setRegister((p) => ({ ...p, gender: e.target.value }))}
+                className="h-12 w-full rounded-xl bg-secondary px-4 text-sm outline-none focus:ring-2 ring-foreground/20 appearance-none cursor-pointer"
+              >
+                <option value="">Select gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+              </select>
+
+              <input
+                type="file"
+                accept="image/*"
+                onChange={(e) => setRegister((p) => ({ ...p, profilePicture: e.target.files?.[0] ?? null }))}
+                className="h-12 w-full rounded-xl bg-secondary px-4 text-sm outline-none focus:ring-2 ring-foreground/20 file:mr-4 file:h-12 file:border-0 file:bg-transparent file:text-sm file:font-medium"
+              />
+            </div>
+
+            <Button
+              variant="hero"
+              size="lg"
+              className="w-full"
+              disabled={phone.length < 10}
+              onClick={() =>
+                navigate("/onboarding/otp", {
+                  state: { phoneNumber: phone, postOtpRedirect: { to: "/onboarding", state: { initialStep: 1 } } },
+                })
+              }
+            >
+              Register
+            </Button>
+
+            <button
+              type="button"
+              onClick={() => setMode("login")}
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Already have an account? Sign in
+            </button>
           </>
         )}
       </div>
@@ -318,7 +395,14 @@ function SuccessStep() {
 }
 
 export default function Onboarding() {
-  const [step, setStep] = useState(0);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const initialStep = useMemo(() => {
+    const s = (location.state as { initialStep?: number } | null)?.initialStep;
+    return typeof s === "number" ? s : 0;
+  }, [location.state]);
+
+  const [step, setStep] = useState(initialStep);
   const next = () => setStep((s) => Math.min(s + 1, 5));
   const back = () => setStep((s) => Math.max(s - 1, 0));
 

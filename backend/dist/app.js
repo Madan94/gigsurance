@@ -8,6 +8,7 @@ const dotenv_1 = __importDefault(require("dotenv"));
 const cors_1 = __importDefault(require("cors"));
 //backend configs
 const database_js_1 = require("./config/database.js");
+const driverAuth_routes_js_1 = __importDefault(require("./routes/driverAuth.routes.js"));
 dotenv_1.default.config();
 (0, database_js_1.connectToDatabase)();
 const app = (0, express_1.default)();
@@ -30,4 +31,5 @@ app.use((req, res, next) => {
 app.get("/", (req, res) => {
     res.send("GigSurance - Ensure your insurance");
 });
+app.use("/api", driverAuth_routes_js_1.default);
 exports.default = app;
