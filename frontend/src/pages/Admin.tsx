@@ -197,11 +197,11 @@ export default function Admin() {
                   <div className="space-y-4">
                     <div>
                       <span className="text-xs text-muted-foreground block mb-1">Total {selectedRegion} Users</span>
-                      <p className="text-2xl font-serif font-bold">{regionsData[selectedRegion].totalUsers.toLocaleString()}</p>
+                      <p className="text-2xl font-serif font-bold">{regionsData[selectedRegion as keyof typeof regionsData].totalUsers.toLocaleString()}</p>
                     </div>
                     <div className="pt-4 border-t border-border/30">
                       <span className="text-xs text-muted-foreground block mb-3">Plan Distribution</span>
-                      {Object.entries(regionsData[selectedRegion].planDistribution).map(([plan, count]) => (
+                      {Object.entries(regionsData[selectedRegion as keyof typeof regionsData].planDistribution).map(([plan, count]) => (
                         <div key={plan} className="flex items-center justify-between mb-2">
                           <span className="text-sm">{plan}</span>
                           <div className="flex items-center gap-2">
@@ -210,7 +210,7 @@ export default function Admin() {
                                 className={`h-full ${
                                   plan === "Basic" ? "bg-blue-500" : plan === "Pro" ? "bg-purple-500" : "bg-amber-500"
                                 }`}
-                                style={{width: `${(count / regionsData[selectedRegion].totalUsers) * 100}%`}}
+                                style={{width: `${(count / regionsData[selectedRegion as keyof typeof regionsData].totalUsers) * 100}%`}}
                               />
                             </div>
                             <span className="text-xs text-muted-foreground w-12">{count}</span>
@@ -227,13 +227,13 @@ export default function Admin() {
                   <div className="space-y-3 mb-4 pb-4 border-b border-border/30">
                     <div>
                       <span className="text-xs text-muted-foreground">Current Disruption Status</span>
-                      <p className="text-sm font-medium text-foreground mt-1">{regionsData[selectedRegion].disruptionStatus}</p>
+                      <p className="text-sm font-medium text-foreground mt-1">{regionsData[selectedRegion as keyof typeof regionsData].disruptionStatus}</p>
                     </div>
                   </div>
                   <div>
                     <span className="text-xs text-muted-foreground block mb-3">AI Audit Log</span>
                     <div className="space-y-3 max-h-64 overflow-y-auto">
-                      {regionsData[selectedRegion].aiAuditLog.map((log, idx) => (
+                      {regionsData[selectedRegion as keyof typeof regionsData].aiAuditLog.map((log, idx) => (
                         <div key={idx} className="bg-muted/50 rounded-lg p-3 border border-border/30">
                           <div className="flex items-start justify-between mb-2">
                             <span className="text-[10px] text-muted-foreground">{log.date}</span>
@@ -274,7 +274,7 @@ export default function Admin() {
                       </tr>
                     </thead>
                     <tbody>
-                      {regionsData[selectedRegion].settlements.map((settlement, idx) => (
+                      {regionsData[selectedRegion as keyof typeof regionsData].settlements.map((settlement, idx) => (
                         <tr key={idx} className="border-b border-border/30 last:border-0 hover:bg-muted/50 transition-colors">
                           <td className="p-4 font-medium">{settlement.tier}</td>
                           <td className="p-4 text-center">{settlement.affected}</td>
@@ -291,7 +291,7 @@ export default function Admin() {
                       <tr className="bg-muted/50 border-t border-border/50">
                         <td colSpan={4} className="p-4 font-semibold text-right">Total Weekly Payout:</td>
                         <td className="p-4 text-right font-serif text-lg font-bold text-foreground">
-                          ₹{regionsData[selectedRegion].settlements.reduce((sum, s) => sum + s.total, 0).toLocaleString()}
+                          ₹{regionsData[selectedRegion as keyof typeof regionsData].settlements.reduce((sum, s) => sum + s.total, 0).toLocaleString()}
                         </td>
                         <td className="p-4"></td>
                       </tr>
