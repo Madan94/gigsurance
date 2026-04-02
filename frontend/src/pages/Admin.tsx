@@ -1,9 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   LayoutDashboard, Zap, Users, CreditCard, MapPin, Settings, Bell, ChevronDown,
   AlertTriangle, CheckCircle, Clock, ArrowUpRight, TrendingUp, Shield, AlertCircle, BarChart3
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { clearAdminSession } from "@/lib/adminAuth";
 import { useState } from "react";
 
 const navItems = [
@@ -95,6 +96,12 @@ export default function Admin() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [selectedRegion, setSelectedRegion] = useState<string | null>(null);
   const regions = Object.keys(regionsData) as (keyof typeof regionsData)[];
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    clearAdminSession();
+    navigate("/admin/login", { replace: true });
+  };
 
   return (
     <div className="min-h-screen bg-background flex">
@@ -129,6 +136,9 @@ export default function Admin() {
         <header className="h-16 border-b border-border/50 bg-card flex items-center justify-between px-6">
           <h1 className="text-lg font-serif">Admin Dashboard</h1>
           <div className="flex items-center gap-4">
+            <Button variant="outline" size="sm" onClick={handleLogout}>
+              Log out
+            </Button>
             <button className="relative p-2 hover:bg-muted rounded-full transition-colors">
               <Bell className="h-5 w-5" />
               <span className="absolute top-1 right-1 h-2 w-2 rounded-full bg-destructive" />
